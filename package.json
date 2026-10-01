@@ -1,0 +1,23 @@
+{
+  "name": "personal-opencode",
+  "version": "0.1.0",
+  "description": "The personal OpenCode plugin for simpsonm09. Registers the skills for the local developer tools.",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "package.json",
+    "skills",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.0.18"
+  }
+}
