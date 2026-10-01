@@ -1,4 +1,4 @@
-# personal-opencode-plugin
+# simpsonm09-personal-opencode
 
 The personal OpenCode layer for `simpsonm09`.
 
@@ -20,7 +20,7 @@ The layer contributes no MCP server. Every personal service is reached through a
 
 ## Plugin and skills
 
-The layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/personal-opencode`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
+The layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/simpsonm09-personal-opencode`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
 
 | Skill | Purpose |
 | --- | --- |
@@ -43,7 +43,7 @@ Keep machine-specific values on the `local` branch of the fork, never on `main`.
 
 | Part | Contract |
 | --- | --- |
-| `layer.json` | Names the config fragment and the files copied into `.opencode/plugins/personal-opencode`. |
+| `layer.json` | Names the config fragment and the files copied into `.opencode/plugins/simpsonm09-personal-opencode`. |
 | `package.json` | Its `files` array lists the same files as `layer.json`, and its `name` matches the plugin id in `index.ts`. |
 | `opencode.fragment.jsonc` | Parses as JSONC and contributes no MCP server. A non-empty `mcp.servers` map fails the validator. |
 | `skills/<id>/SKILL.md` | Carries `name` equal to the directory id and a non-empty `description`. The plugin registers the body. |

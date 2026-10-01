@@ -1,4 +1,4 @@
-# personal-opencode-plugin working agreements
+# simpsonm09-personal-opencode working agreements
 
 The personal OpenCode layer for `simpsonm09`.
 

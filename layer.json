@@ -1,5 +1,5 @@
 {
-  "name": "personal-opencode-plugin",
+  "name": "simpsonm09-personal-opencode",
   "description": "Personal OpenCode layer for simpsonm09.",
   "kind": "config",
   "config": "opencode.fragment.jsonc",
