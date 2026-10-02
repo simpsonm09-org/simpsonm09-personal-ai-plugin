@@ -6,7 +6,7 @@ The personal OpenCode layer for `simpsonm09`.
 
 - The layer contributes no MCP server. Reach a personal service through its CLI. The org `service-integrations` registry names the general owner; this layer holds the personal concrete.
 - Keep `layer.json`, `package.json`, and `opencode.fragment.jsonc` in sync. The contract test checks them.
-- Machine-specific values stay on the `local` branch of the fork, never on `main`.
+- Machine-specific and personal values stay out of `main`: non-secrets, including PII, in the gitignored `settings/.env`; secrets in Infisical. Use the `local` branch only for a value that must be versioned per machine.
 - No personal secret or credential is committed.
 
 ## Commands
