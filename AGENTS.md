@@ -4,7 +4,7 @@ The personal OpenCode layer for `simpsonm09`.
 
 ## Ground rules
 
-- The layer contributes no MCP server. Reach a personal service through its CLI, documented in the `service-integrations` registry.
+- The layer contributes no MCP server. Reach a personal service through its CLI. The org `service-integrations` registry names the general owner; this layer holds the personal concrete.
 - Keep `layer.json`, `package.json`, and `opencode.fragment.jsonc` in sync. The contract test checks them.
 - Machine-specific values stay on the `local` branch of the fork, never on `main`.
 - No personal secret or credential is committed.
@@ -18,7 +18,7 @@ The personal OpenCode layer for `simpsonm09`.
 
 - Language and toolchain: TypeScript, Node, and `@opencode/plugin`.
 - `maxstack` composes this layer last, so it overrides the org layer on a same-key conflict.
-- Skills: `dev-tools`, `discord`.
+- Skills: `integrations-personal`, `dev-tools`, `discord`.
 - The README covers the contents, the layering, and the layer contract.
 
 ## Skills
