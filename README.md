@@ -16,7 +16,7 @@ It contributes personal preferences and skills, not shared with the organization
 
 ## Servers
 
-The layer contributes no MCP server. Every personal service is reached through a CLI, per the `service-integrations` registry: Playwright is `@playwright/cli` (`playwright-cli`), Chrome DevTools is the `chrome-devtools` CLI, Postman is the `postman` CLI, and Discord is `discli`. If a future job has no CLI, add one server here, keep it off by default, and remove it once a CLI exists.
+The layer contributes no MCP server. General services are reached through a CLI, per the org `service-integrations` registry. This layer holds the personal concretes the registry defers to, and the personal services: `himalaya` for email, `ntfy` for phone notifications, `smsgate` for texting, and `discli` for Discord. If a future job has no CLI, add one server here, keep it off by default, and remove it once a CLI exists.
 
 ## Plugin and skills
 
@@ -24,6 +24,7 @@ The layer is configuration and a plugin at the same time. `maxstack`'s `Install-
 
 | Skill | Purpose |
 | --- | --- |
+| `integrations-personal` | The personal concretes the org registry defers to: accounts, boards, workspaces, clusters, and the `himalaya`, `ntfy`, and `smsgate` services. |
 | `dev-tools` | Where each personal tool's settings live and how to apply them. |
 | `discord` | Discord through the `discli` CLI, including its token, permission profiles, audit log, and live `listen` and `serve` modes. |
 
