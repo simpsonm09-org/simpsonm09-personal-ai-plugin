@@ -24,7 +24,7 @@ The layer is configuration and a plugin at the same time. `maxstack`'s `Install-
 
 | Skill | Purpose |
 | --- | --- |
-| `integrations-personal` | The personal concretes the org registry defers to: accounts, boards, workspaces, clusters, and the `himalaya`, `ntfy`, and `smsgate` services. |
+| `integrations-personal` | Where each personal value comes from (infer from the tool, the `settings/.env` bootstrap, or Infisical), and the `himalaya`, `ntfy`, and `smsgate` services. |
 | `dev-tools` | Where each personal tool's settings live and how to apply them. |
 | `discord` | Discord through the `discli` CLI, including its token, permission profiles, audit log, and live `listen` and `serve` modes. |
 
