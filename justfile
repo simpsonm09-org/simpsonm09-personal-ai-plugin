@@ -29,6 +29,7 @@ test:
 
 # Run the tests and write an lcov report to coverage/lcov.info.
 coverage:
+    npm ci
     mise run coverage
 
 # Install the discli Discord CLI and run discli doctor.
