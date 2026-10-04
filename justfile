@@ -27,6 +27,10 @@ aislop:
 test:
     mise run test
 
+# Run the tests and write an lcov report to coverage/lcov.info.
+coverage:
+    mise run coverage
+
 # Install the discli Discord CLI and run discli doctor.
 setup-discli:
     {{ if os_family() == "windows" { "pwsh -File scripts/setup-discli.ps1" } else { "bash scripts/setup-discli.sh" } }}
