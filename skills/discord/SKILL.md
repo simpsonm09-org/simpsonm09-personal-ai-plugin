@@ -34,7 +34,7 @@ The bot token is a secret. It lives in Infisical, in the project's `dev` environ
 3. The `~/.discli/config.json` file
 4. The `DISCORD_TOKEN` environment variable
 
-Load the environment with the workspace `.envrc` (direnv) or `. wsl/load-secrets.sh` in WSL, and `scripts/Import-Secrets.ps1 -Apply` on Windows, then let `discli` read `DISCORD_BOT_TOKEN`. To save it to the config file instead, use the individual command.
+Load the environment with the workspace `.envrc` through direnv in WSL, and with `just import-secrets -Apply` in `dev-setup-starter` on Windows, then let `discli` read `DISCORD_BOT_TOKEN`. To save it to the config file instead, use the individual command.
 
 ```bash
 discli config set token "$DISCORD_BOT_TOKEN"

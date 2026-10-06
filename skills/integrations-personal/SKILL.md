@@ -44,7 +44,7 @@ If a value is neither inferable nor present, say so. Do not invent it.
 
 ## How the loaders reach the value
 
-WSL loads the workspace `.envrc` through direnv. Windows runs `scripts/Import-Secrets.ps1 -Apply`. Both read `settings/.env`, export every key that is not prefixed `INFISICAL_`, and then overlay the Infisical export. See `dev-setup-starter/docs/secrets.md`.
+WSL loads the workspace `.envrc` through direnv. Windows runs `just import-secrets -Apply` in `dev-setup-starter`. Both read `settings/.env`, export every key that is not prefixed `INFISICAL_`, and then overlay the Infisical export. See `dev-setup-starter/docs/secrets.md`.
 
 ## Personal services
 
