@@ -19,5 +19,5 @@ Each tool in the workstation has one home for its settings. This skill says wher
 
 - The paths above are inside the `dev-setup-starter` repository.
 - Restart OpenChamber after a plugin or MCP change. Its server resolves plugins once per process.
-- Load secrets in WSL through the workspace `.envrc` with direnv, and on Windows with `just import-secrets -Apply` in `simpsonm09-dev-setup`.
+- Load secrets in WSL through the workspace `.envrc` with direnv, and on Windows with `just import-secrets -Apply` in `dev-setup-starter`.
 - Run heavy Linux I/O in ext4 under the WSL home. Do not put `node_modules` or a build tree on the `D:` mount.
