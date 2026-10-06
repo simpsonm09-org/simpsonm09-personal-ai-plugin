@@ -104,4 +104,6 @@ Discord, including messages, channels, and DMs, is owned by `discli`. The bot to
 - Infer from the tool when the tool already knows. Do not restate the account, the cluster, or the identity.
 - Keep PII and non-secret machine configuration in `settings/.env`, which is gitignored.
 - Keep secrets in Infisical and read them from the environment.
+- Confirm a CLI exists before you cite it or one of its commands. Run `command -v <cli>` in WSL or `Get-Command <cli>` on Windows. Do not claim a job moved from MCP to a CLI the runtime does not have.
+- State how a service is reached only as it really is. Name the owner the runtime has, an MCP server or a CLI, and do not present one as the other.
 - The org registry states the general rule; this skill states the source.
