@@ -5,7 +5,7 @@ description: Use when configuring or troubleshooting the personal developer tool
 
 # Personal dev tools
 
-Each tool in the workstation has one home for its settings. This skill says where that is and how to apply a change.
+Two concerns stay separate. `dev-setup-starter` owns installing the tools. Its `tools.yaml` is the single hand-edited list, and its scripts render and apply the machine tool set. This skill owns where each tool keeps its settings and how to apply a change.
 
 | Tool | Role | Settings and apply |
 | --- | --- | --- |
