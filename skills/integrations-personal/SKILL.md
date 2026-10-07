@@ -1,6 +1,6 @@
 ---
 name: integrations-personal
-description: Use when a task needs a personal concrete for a general integration or a personal service, such as the GitHub account, the Jira project, the Kubernetes context, email through himalaya, phone notifications through ntfy, or texting through smsgate. States where each value comes from rather than the value.
+description: Use when a task needs a personal concrete for a general integration or a personal service, such as the GitHub account, the Kubernetes context, email through himalaya, phone notifications through ntfy, or texting through smsgate. States where each value comes from rather than the value.
 ---
 
 # Personal integrations
@@ -14,8 +14,8 @@ Four tiers hold a value. A committed file records only a variable name and the g
 | Source | Rule | Examples |
 | --- | --- | --- |
 | Infer from the tool | The tool already knows the value. Read it at run time; never store it here. | `gh auth status` for the GitHub account, `kubectl config current-context` for the cluster, `git config user.email` for the identity |
-| Infisical `/secrets` | A credential. Read it from the environment through the loaders. | `JIRA_API_TOKEN`, `JENKINS_API_TOKEN`, `POSTMAN_API_KEY`, `SMS_GATEWAY_USER`, `SMS_GATEWAY_PASSWORD`, `GMAIL_APP_PASSWORD`, `DISCORD_BOT_TOKEN`, `NTFY_TOPIC`, `NTFY_TOKEN` |
-| Infisical `/pii` | PII and person or machine config. Read it from the environment through the loaders. | `JIRA_SITE`, `JIRA_PROJECT`, `JENKINS_URL`, `JENKINS_USER`, `POSTMAN_WORKSPACE`, `GMAIL_ADDRESS`, `SMS_GATEWAY_HOST` |
+| Infisical `/secrets` | A credential. Read it from the environment through the loaders. | `POSTMAN_API_KEY`, `SMS_GATEWAY_USER`, `SMS_GATEWAY_PASSWORD`, `GMAIL_APP_PASSWORD`, `DISCORD_BOT_TOKEN`, `NTFY_TOPIC`, `NTFY_TOKEN` |
+| Infisical `/pii` | PII and person or machine config. Read it from the environment through the loaders. | `POSTMAN_WORKSPACE`, `GMAIL_ADDRESS`, `SMS_GATEWAY_HOST` |
 | Gitignored `settings/.env` | The Infisical machine identity (secret-zero) and a small offline fallback for when Infisical is unreachable. Nothing else when the fallback is avoidable. | `INFISICAL_DOMAIN`, `INFISICAL_ENV`, `INFISICAL_PROJECT_ID`, `INFISICAL_UNIVERSAL_AUTH_CLIENT_ID`, `INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET` |
 
 The loaders overlay the Infisical export on `.env`, so an Infisical value overrides a same-name `.env` value, and the `.env` copy stays as the offline fallback.
@@ -28,10 +28,6 @@ The loaders overlay the Infisical export on `.env`, so an Infisical value overri
 | Git identity | infer | `git config user.email` |
 | Kubernetes context | infer | `kubectl config current-context` |
 | Infisical machine identity and project | gitignored `settings/.env` | `INFISICAL_DOMAIN`, `INFISICAL_ENV`, `INFISICAL_PROJECT_ID`, `INFISICAL_UNIVERSAL_AUTH_CLIENT_ID`, `INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET` |
-| Jira site and project | Infisical `/pii` | `JIRA_SITE`, `JIRA_PROJECT` |
-| Jira API token | Infisical `/secrets` | `JIRA_API_TOKEN` |
-| Jenkins controller and user | Infisical `/pii` | `JENKINS_URL`, `JENKINS_USER` |
-| Jenkins API token | Infisical `/secrets` | `JENKINS_API_TOKEN` |
 | Postman workspace | Infisical `/pii` | `POSTMAN_WORKSPACE` |
 | Postman API key | Infisical `/secrets` | `POSTMAN_API_KEY` |
 | Email address | Infisical `/pii` | `GMAIL_ADDRESS` |
