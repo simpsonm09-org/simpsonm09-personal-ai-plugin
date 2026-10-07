@@ -16,7 +16,7 @@ It contributes personal preferences and skills, not shared with the organization
 
 ## Servers
 
-The layer contributes no MCP server. General services are reached through a CLI, per the org `service-integrations` registry. This layer holds the personal concretes the registry defers to, and the personal services: `himalaya` for email, `ntfy` for phone notifications, `smsgate` for texting, and `discli` for Discord. If a future job has no CLI, add one server here, keep it off by default, and remove it once a CLI exists.
+The layer contributes no MCP server. General services are reached through a CLI, per the org `service-integrations` registry. This layer holds the personal concretes the registry defers to, and the personal services: `himalaya` for email, `ntfy` for phone notifications, `smsgate` for texting, and `discli` for Discord. Discord and Postman reach their secret through the Agent Vault wrappers, `with-vault --role agent` for the agent and `with-secrets` or `with-vault --role human` for the human. The `agent-vault` skill owns the identities, the bundles, and the proxy. If a future job has no CLI, add one server here, keep it off by default, and remove it once a CLI exists.
 
 ## Plugin and skills
 
@@ -24,9 +24,10 @@ The layer is configuration and a plugin at the same time. `maxstack`'s `Install-
 
 | Skill | Purpose |
 | --- | --- |
-| `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), and the `himalaya`, `ntfy`, and `smsgate` services. |
+| `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), the loader and the Agent Vault wrappers, and the `himalaya`, `ntfy`, and `smsgate` services. |
 | `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `dev-setup-starter` through `tools.yaml`. |
-| `discord` | Discord through the `discli` CLI, including its token, permission profiles, audit log, and live `listen` and `serve` modes. |
+| `discord` | Discord through the `discli` CLI, including the `with-vault` and `with-secrets` wrappers, permission profiles, the audit log, and live `listen` and `serve` modes. |
+| `agent-vault` | The Agent Vault model, its identities, the `with-vault` and `with-secrets` wrappers, and the known gotchas. Discord and Postman go through it. |
 
 Run `just setup-discli` once per machine to install `discli` and run `discli doctor`.
 
