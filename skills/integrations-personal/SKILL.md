@@ -115,7 +115,7 @@ Discord, including messages, channels, and DMs, is owned by `discli`. The bot to
 - Infer from the tool when the tool already knows. Do not restate the account, the cluster, or the identity.
 - Keep a credential in Infisical `/secrets` and PII, person, or machine config in Infisical `/pii`.
 - Keep `settings/.env` to the Infisical machine identity and a small offline fallback. The loaders overlay Infisical on `.env`, and the `.env` copy remains the fallback when Infisical is unreachable.
-- Reach a value through a wrapper. Discord and Postman go through `with-vault`; the other services go through `with-secrets`. Name the wrapper rather than a raw environment variable on the agent path.
+- Reach a value through a wrapper. The agent reaches Discord and Postman through `with-vault --role agent`; the human can use `with-secrets` or `with-vault --role human` for them, and `with-secrets` for the other services. Name the wrapper rather than a raw environment variable on the agent path.
 - Confirm a CLI exists before you cite it or one of its commands. Run `command -v <cli>` in WSL or `Get-Command <cli>` on Windows. Do not claim a job moved from MCP to a CLI the runtime does not have.
 - State how a service is reached only as it really is. Name the owner the runtime has, an MCP server or a CLI, and do not present one as the other.
 - The org registry states the general rule; this skill states the source.

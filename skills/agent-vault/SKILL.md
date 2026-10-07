@@ -13,7 +13,7 @@ Four parts.
 
 - **Service.** A host the proxy forwards to, such as `discord.com` or `api.getpostman.com`.
 - **Access bundle.** A named set of services, a bearer header, and a prefix. Bundle `discord` covers `discord.com` with the `Authorization` header and the `Bot` prefix. Bundle `postman` covers `api.getpostman.com` and `gateway.postman.com` with the `X-Api-Key` header and an empty prefix.
-- **Proxy.** The `workstation` proxy listens on port 17323, enrolled once, and attaches a bundle's credential to a request that matches the bundle's hosts. Its traffic policy is `bundle-hosts`, so it refuses any host outside the bundles.
+- **Proxy.** The `workstation` proxy listens on port 17323, enrolled once, and attaches a bundle's credential to a request that matches the bundle's hosts. Its traffic policy is `bundle-hosts`, so it forwards the bundle hosts and refuses any other host, with `ndbc.noaa.gov` allowed as an exception so the Postman collection run can reach its target.
 - **Session.** A per-run grant that ties a call to an identity. The wrapper mints it, the call runs under it, and the wrapper revokes it on exit.
 
 ## Identities
