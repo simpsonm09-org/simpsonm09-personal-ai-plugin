@@ -1,6 +1,6 @@
 ---
 name: integrations-personal
-description: Use when a task needs a personal concrete for a general integration or a personal service, such as the GitHub account, the Kubernetes context, email through himalaya, phone notifications through ntfy, or texting through smsgate. States where each value comes from rather than the value.
+description: Use when a task needs a personal concrete for a general integration or a personal service, such as the GitHub account, the Kubernetes context, email through himalaya, phone notifications through ntfy, texting through smsgate, or the Agent Vault for Discord and Postman. States where each value comes from rather than the value.
 ---
 
 # Personal integrations
@@ -10,6 +10,8 @@ The org layer's `service-integrations` registry names the general owner of each 
 ## Where a value comes from
 
 Four tiers hold a value. A committed file records only a variable name and the general rule. The gitignored `settings/.env` holds the machine identity and a small offline fallback. Infisical holds the rest, with credentials in `/secrets` and PII or person config in `/pii`. The tool's own state wins when it already knows the answer.
+
+Two wrappers deliver an Infisical value. `with-secrets` loads it into one command with the loader identity. `with-vault` mints a per-run session and the proxy attaches the credential, so the value never enters the environment.
 
 | Source | Rule | Examples |
 | --- | --- | --- |
@@ -39,9 +41,21 @@ The loaders overlay the Infisical export on `.env`, so an Infisical value overri
 
 If a value is neither inferable nor present, say so. Do not invent it.
 
-## How the loaders reach the value
+## The loader and the vault
 
-WSL loads the workspace `.envrc` through direnv. Windows runs `just import-secrets -Apply` in `dev-setup-starter`. Both read `settings/.env` for the Infisical machine identity and the offline fallback, pull the project's `/secrets` and `/pii` values, and overlay them, so an Infisical value overrides a same-name `.env` value. When Infisical is unreachable the `.env` values remain. See `dev-setup-starter/docs/secrets.md`.
+`with-secrets <tool>` loads `/secrets` and `/pii` with the loader identity and puts the values in that command's environment. `with-vault --role human <tool>` and `with-vault --role agent <tool>` mint a per-run session and the proxy attaches the credential, so the value never enters the environment. `--role` is required, so a run is never silently misattributed.
+
+| Tool | Wrapper | Why |
+| --- | --- | --- |
+| `discli` | `with-vault --role agent discli` for the agent, `with-secrets discli` or `with-vault --role human discli` for the human | The Discord bot token is brokered, not exported. |
+| `postman` | `with-vault --role agent postman` for the agent, `with-secrets postman` or `with-vault --role human postman` for the human | The Postman API key is brokered, not exported. |
+| `himalaya`, `ntfy`, `smsgate` | `with-secrets <tool>` | These read the value from the environment. |
+
+The `agent-vault` skill owns the identities, the bundles, and the proxy.
+
+## How the loader reaches the value
+
+The human runs `with-secrets <tool>` in WSL or `with-secrets.ps1 <tool>` on Windows. Both read `settings/.env` for the Infisical machine identity and the offline fallback, pull the project's `/secrets` and `/pii` values, and overlay them, so an Infisical value overrides a same-name `.env` value. When Infisical is unreachable the `.env` values remain. WSL also loads the workspace `.envrc` through direnv for a shell session, and Windows runs `just import-secrets -Apply` in `dev-setup-starter` for the same effect. See `dev-setup-starter/docs/secrets.md`.
 
 ## Personal services
 
@@ -86,7 +100,7 @@ Rules: SMS only, never set the phone's default SMS app, keep volume low, and do 
 
 ### Discord via `discli`
 
-Discord, including messages, channels, and DMs, is owned by `discli`. The bot token is `DISCORD_BOT_TOKEN` in Infisical `/secrets`. See the `discord` skill for the token resolution order, profiles, and the command set.
+Discord, including messages, channels, and DMs, is owned by `discli`. The bot token is `DISCORD_BOT_TOKEN` in Infisical `/secrets`, reached through `with-vault` or `with-secrets`. See the `discord` skill for the wrappers, profiles, and the command set.
 
 ## Channel selection
 
@@ -101,6 +115,7 @@ Discord, including messages, channels, and DMs, is owned by `discli`. The bot to
 - Infer from the tool when the tool already knows. Do not restate the account, the cluster, or the identity.
 - Keep a credential in Infisical `/secrets` and PII, person, or machine config in Infisical `/pii`.
 - Keep `settings/.env` to the Infisical machine identity and a small offline fallback. The loaders overlay Infisical on `.env`, and the `.env` copy remains the fallback when Infisical is unreachable.
+- Reach a value through a wrapper. Discord and Postman go through `with-vault`; the other services go through `with-secrets`. Name the wrapper rather than a raw environment variable on the agent path.
 - Confirm a CLI exists before you cite it or one of its commands. Run `command -v <cli>` in WSL or `Get-Command <cli>` on Windows. Do not claim a job moved from MCP to a CLI the runtime does not have.
 - State how a service is reached only as it really is. Name the owner the runtime has, an MCP server or a CLI, and do not present one as the other.
 - The org registry states the general rule; this skill states the source.

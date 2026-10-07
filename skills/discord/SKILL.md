@@ -1,6 +1,6 @@
 ---
 name: discord
-description: Use when a task needs Discord in this workspace, such as sending or reading messages, reacting, running polls, or managing channels, roles, members, threads, DMs, and webhooks. Points at the discli CLI, its token resolution, permission profiles, audit log, and live listen and serve modes.
+description: Use when a task needs Discord in this workspace, such as sending or reading messages, reacting, running polls, or managing channels, roles, members, threads, DMs, and webhooks. Points at the discli CLI, the with-vault and with-secrets wrappers, permission profiles, the audit log, and live listen and serve modes.
 ---
 
 # Discord
@@ -23,26 +23,39 @@ just setup-discli
 
 `discli doctor` verifies the install and token. It exits 0 when nothing fails and 1 otherwise. Add `--server NAME` to also check the bot's real permissions in that server.
 
-## Token
+## Token and the wrappers
 
-The bot token is a secret. It lives in Infisical, in the project's `dev` environment, as `DISCORD_BOT_TOKEN`, and the loaders put it in the environment. Never commit it to this repository.
+The bot token is a secret. It lives in Infisical as `DISCORD_BOT_TOKEN`, in the `discord` bundle, and a wrapper attaches it to one command. Never commit it to this repository.
 
-`discli` resolves the token in this order.
+Run every `discli` command through a wrapper.
+
+| Who runs it | Command | Identity |
+| --- | --- | --- |
+| Agent | `with-vault --role agent discli <args>` | `Agent-Vault-Runner` |
+| Human | `with-secrets discli <args>` | `Ugallu-Desktop` |
+| Human | `with-vault --role human discli <args>` | `Human-Vault-Runner` |
+
+The agent path never reads `DISCORD_BOT_TOKEN`. `with-vault` opens a per-run session and the proxy attaches the token, so the token never enters the agent's environment or its `~/.discli/config.json`. A raw `discli` with no wrapper fails with no token, which is the intended state.
+
+`discli` still resolves a token in this order when the environment holds one.
 
 1. The `--token` flag
 2. The `DISCORD_BOT_TOKEN` environment variable
 3. The `~/.discli/config.json` file
 4. The `DISCORD_TOKEN` environment variable
 
-Load the environment with the workspace `.envrc` through direnv in WSL, and with `just import-secrets -Apply` in `dev-setup-starter` on Windows, then let `discli` read `DISCORD_BOT_TOKEN`. To save it to the config file instead, use the individual command.
+That order is superseded for the agent path. The agent does not set `DISCORD_BOT_TOKEN`, does not run `discli config set token`, and does not pass `--token`. The wrapper is the only route. The human may still use the loader, which puts `DISCORD_BOT_TOKEN` in the environment of that one command.
 
 ```bash
-discli config set token "$DISCORD_BOT_TOKEN"
+with-vault --role agent discli --json server list
+with-secrets discli --json server list
 ```
+
+The `agent-vault` skill owns the identities, the bundles, and the proxy.
 
 ## Never drive the wizard
 
-`discli setup` is interactive. It refuses piped stdin and `--json`, so an agent cannot drive it. Configure `discli` with `discli config set token` and the individual commands, then confirm with `discli doctor`.
+`discli setup` is interactive. It refuses piped stdin and `--json`, so an agent cannot drive it. Run the individual commands through a wrapper, then confirm with `discli doctor`. The agent never runs `discli config set token`.
 
 ## Commands
 
@@ -110,7 +123,7 @@ discli serve --status online
 ## Rules
 
 - Prefer `discli` over any second path to Discord. There is no Discord MCP server in this workspace.
-- Read the token from the environment. Never write it into a file in this repository.
-- An agent never drives `discli setup`. Use `discli config set token` and the individual commands.
+- Run `discli` through a wrapper. The agent runs `with-vault --role agent discli` and never reads the token. The human runs `with-secrets discli` or `with-vault --role human discli`.
+- An agent never drives `discli setup` and never runs `discli config set token`. Use the wrapper and the individual commands.
 - Use `--profile readonly` or `--profile chat` unless the task needs a destructive action.
 - Run `discli doctor` before blaming a command.
