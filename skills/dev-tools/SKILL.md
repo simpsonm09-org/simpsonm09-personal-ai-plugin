@@ -5,7 +5,7 @@ description: Use when configuring or troubleshooting the personal developer tool
 
 # Personal dev tools
 
-Each tool in the workstation has one home for its settings. This skill says where that is and how to apply a change.
+Two concerns stay separate. `simpsonm09-dev-setup` owns installing the tools. Its `tools.yaml` is the single hand-edited list, and its scripts render and apply the machine tool set. This skill owns where each tool keeps its settings and how to apply a change.
 
 | Tool | Role | Settings and apply |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ Each tool in the workstation has one home for its settings. This skill says wher
 
 ## Notes
 
-- The paths above are inside the `dev-setup-starter` repository.
+- The paths above are inside the `simpsonm09-dev-setup` repository.
 - Restart OpenChamber after a plugin or MCP change. Its server resolves plugins once per process.
-- Load secrets in WSL through the workspace `.envrc` with direnv, and on Windows with `just import-secrets -Apply` in `dev-setup-starter`.
+- Load secrets in WSL through the workspace `.envrc` with direnv, and on Windows with `just import-secrets -Apply` in `simpsonm09-dev-setup`.
 - Run heavy Linux I/O in ext4 under the WSL home. Do not put `node_modules` or a build tree on the `D:` mount.

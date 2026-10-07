@@ -6,7 +6,7 @@ The personal OpenCode layer for `simpsonm09`.
 
 - The layer contributes no MCP server. Reach a personal service through its CLI. The org `service-integrations` registry names the general owner; this layer holds the personal concrete.
 - Keep `layer.json`, `package.json`, and `opencode.fragment.jsonc` in sync. The contract test checks them.
-- Machine-specific and personal values stay out of `main`: non-secrets, including PII, in the gitignored `settings/.env`; secrets in Infisical. Use the `local` branch only for a value that must be versioned per machine.
+- Values follow the four-tier store model. A committed file records only a variable name and the general rule, never a value. The gitignored `settings/.env` holds the Infisical machine identity (secret-zero) and a small offline fallback. Infisical `/secrets` holds credentials, and Infisical `/pii` holds PII and person or machine config. The loaders overlay Infisical on `.env` and keep the documented offline fallback.
 - No personal secret or credential is committed.
 
 ## Commands

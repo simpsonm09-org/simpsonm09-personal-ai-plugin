@@ -24,8 +24,8 @@ The layer is configuration and a plugin at the same time. `maxstack`'s `Install-
 
 | Skill | Purpose |
 | --- | --- |
-| `integrations-personal` | Where each personal value comes from (infer from the tool, the `settings/.env` bootstrap, or Infisical), and the `himalaya`, `ntfy`, and `smsgate` services. |
-| `dev-tools` | Where each personal tool's settings live and how to apply them. |
+| `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), and the `himalaya`, `ntfy`, and `smsgate` services. |
+| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `simpsonm09-dev-setup` through `tools.yaml`. |
 | `discord` | Discord through the `discli` CLI, including its token, permission profiles, audit log, and live `listen` and `serve` modes. |
 
 Run `just setup-discli` once per machine to install `discli` and run `discli doctor`.
@@ -36,7 +36,7 @@ To add a skill, create `skills/<id>/SKILL.md` with `name` and `description` fron
 
 Precedence is personal over org over the PStack base. A layer overrides a same-key server from a lower layer. `maxstack` records the repo and commit of every layer in `stack.lock.json`.
 
-Keep machine-specific values on the `local` branch of the fork, never on `main`.
+Values follow the four-tier store model. A committed file names a variable but never a value. The gitignored `settings/.env` holds the Infisical machine identity (secret-zero) and a small offline fallback. Infisical `/secrets` holds credentials, and Infisical `/pii` holds PII and person or machine config. The loaders overlay Infisical on `.env` and keep the documented offline fallback.
 
 ## Layer contract
 
