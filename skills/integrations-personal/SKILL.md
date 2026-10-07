@@ -47,7 +47,7 @@ If a value is neither inferable nor present, say so. Do not invent it.
 
 ## How the loaders reach the value
 
-WSL loads the workspace `.envrc` through direnv. Windows runs `just import-secrets -Apply` in `simpsonm09-dev-setup`. Both read `settings/.env` for the Infisical machine identity and the offline fallback, pull the project's `/secrets` and `/pii` values, and overlay them, so an Infisical value overrides a same-name `.env` value. When Infisical is unreachable the `.env` values remain. See `simpsonm09-dev-setup/docs/secrets.md`.
+WSL loads the workspace `.envrc` through direnv. Windows runs `just import-secrets -Apply` in `dev-setup-starter`. Both read `settings/.env` for the Infisical machine identity and the offline fallback, pull the project's `/secrets` and `/pii` values, and overlay them, so an Infisical value overrides a same-name `.env` value. When Infisical is unreachable the `.env` values remain. See `dev-setup-starter/docs/secrets.md`.
 
 ## Personal services
 

@@ -25,7 +25,7 @@ The layer is configuration and a plugin at the same time. `maxstack`'s `Install-
 | Skill | Purpose |
 | --- | --- |
 | `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), and the `himalaya`, `ntfy`, and `smsgate` services. |
-| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `simpsonm09-dev-setup` through `tools.yaml`. |
+| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `dev-setup-starter` through `tools.yaml`. |
 | `discord` | Discord through the `discli` CLI, including its token, permission profiles, audit log, and live `listen` and `serve` modes. |
 
 Run `just setup-discli` once per machine to install `discli` and run `discli doctor`.
