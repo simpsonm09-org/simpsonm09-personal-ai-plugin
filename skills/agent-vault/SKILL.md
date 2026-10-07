@@ -44,7 +44,7 @@ Three identities keep access and attribution separate. The loader identity reads
 | `postman` | `postman` |
 | other | `--bundle <name>` required |
 
-The Windows wrappers are `with-secrets.ps1` and `with-vault.ps1` in `C:\Users\doomp\.config\agent-vault`.
+The Windows wrappers are `with-secrets.ps1` and `with-vault.ps1` in `%USERPROFILE%\.config\agent-vault`. The WSL wrappers live in `~/.config/agent-vault`.
 
 ```bash
 with-vault --role agent discli --json server list
