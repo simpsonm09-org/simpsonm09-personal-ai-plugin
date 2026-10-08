@@ -12,7 +12,8 @@
     "index.ts",
     "package.json",
     "skills",
-    "README.md"
+    "README.md",
+    ".claude-plugin"
   ],
   "scripts": {
     "test": "node --test"
