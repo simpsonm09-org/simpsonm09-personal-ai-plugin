@@ -28,7 +28,7 @@ test("the Claude manifest is valid and matches the package", () => {
   const manifest = readJson(".claude-plugin/plugin.json");
   const pkg = readJson("package.json");
 
-  assert.equal(manifest.name, "simpsonm09-personal");
+  assert.equal(manifest.name, "simpsonm09-personal-ai-plugin");
   assert.equal(manifest.version, pkg.version);
   assert.ok(
     manifest.description?.length > 0,

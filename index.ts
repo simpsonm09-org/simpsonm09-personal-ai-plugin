@@ -65,7 +65,7 @@ function loadSkills(root: string): SkillSeed[] {
 }
 
 export default Plugin.define({
-  id: "simpsonm09-personal-opencode",
+  id: "simpsonm09-personal-ai-plugin",
   async setup(ctx) {
     const skills = loadSkills(join(here, "skills"));
     if (skills.length === 0) return;
