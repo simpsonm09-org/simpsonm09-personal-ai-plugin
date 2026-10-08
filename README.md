@@ -1,8 +1,8 @@
-# simpsonm09-personal-opencode
+# simpsonm09-personal-ai-plugin
 
-The personal OpenCode layer for `simpsonm09`.
+The personal plugin layer for `simpsonm09`. It serves OpenCode and Claude Code from one `skills/` folder.
 
-The original lives in `simpsonm09-org/simpsonm09-personal-opencode-plugin`; work happens on the personal fork. See [`repo-standard`](https://github.com/simpsonm09-org/simpsonm09-repo-standard).
+The original lives in `simpsonm09-org/simpsonm09-personal-ai-plugin`; work happens on the personal fork. See [`repo-standard`](https://github.com/simpsonm09-org/simpsonm09-repo-standard).
 
 It contributes personal preferences and skills, not shared with the organization. It contributes no MCP server; every personal service is reached through a CLI. `maxstack` composes this layer last, so it overrides the org layer on a same-key conflict.
 
@@ -20,7 +20,7 @@ The layer contributes no MCP server. General services are reached through a CLI,
 
 ## Plugin and skills
 
-The layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/simpsonm09-personal-opencode`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
+The layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/simpsonm09-personal-ai-plugin`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
 
 | Skill | Purpose |
 | --- | --- |
@@ -35,7 +35,7 @@ To add a skill, create `skills/<id>/SKILL.md` with `name` and `description` fron
 
 ## Claude Code plugin
 
-The same skills also load into Claude Code as the `simpsonm09-personal` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. Some skill text names OpenCode-only paths and tools, so read it as OpenCode guidance where it says so.
+The same skills also load into Claude Code as the `simpsonm09-personal-ai-plugin` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. Some skill text names OpenCode-only paths and tools, so read it as OpenCode guidance where it says so.
 
 ## Layering
 
@@ -49,7 +49,7 @@ Values follow the four-tier store model. A committed file names a variable but n
 
 | Part | Contract |
 | --- | --- |
-| `layer.json` | Names the config fragment and the files copied into `.opencode/plugins/simpsonm09-personal-opencode`. |
+| `layer.json` | Names the config fragment and the files copied into `.opencode/plugins/simpsonm09-personal-ai-plugin`. |
 | `package.json` | Its `files` array lists the same files as `layer.json`, and its `name` matches the plugin id in `index.ts`. |
 | `opencode.fragment.jsonc` | Parses as JSONC and contributes no MCP server. A non-empty `mcp.servers` map fails the validator. |
 | `skills/<id>/SKILL.md` | Carries `name` equal to the directory id and a non-empty `description`. The plugin registers the body. |

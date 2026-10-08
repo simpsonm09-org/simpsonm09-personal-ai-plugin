@@ -7,13 +7,13 @@ import { test } from "node:test"
 import { repoRoot, validateLayer } from "../scripts/validate-layer.mjs"
 
 const LAYER = {
-  name: "simpsonm09-personal-opencode",
+  name: "simpsonm09-personal-ai-plugin",
   kind: "config",
   config: "opencode.fragment.jsonc",
   files: ["index.ts", "package.json", "skills", "README.md"],
 }
-const PKG = { name: "simpsonm09-personal-opencode", files: ["index.ts", "package.json", "skills", "README.md"] }
-const INDEX = 'export default Plugin.define({ id: "simpsonm09-personal-opencode", async setup() {} })'
+const PKG = { name: "simpsonm09-personal-ai-plugin", files: ["index.ts", "package.json", "skills", "README.md"] }
+const INDEX = 'export default Plugin.define({ id: "simpsonm09-personal-ai-plugin", async setup() {} })'
 const SKILL = '---\nname: demo\ndescription: Use when running the demo.\n---\n\n# Demo\n'
 
 function makeFixture() {
@@ -91,6 +91,6 @@ test("detects a skill whose frontmatter name does not match its directory", () =
 test("detects a plugin id that does not match the package name", () => {
   withFixture(
     (root) => writeFileSync(join(root, "package.json"), JSON.stringify({ ...PKG, name: "renamed" })),
-    (failures) => assert.ok(failures.some((f) => f.includes('plugin id "simpsonm09-personal-opencode" must match package.json name "renamed"'))),
+    (failures) => assert.ok(failures.some((f) => f.includes('plugin id "simpsonm09-personal-ai-plugin" must match package.json name "renamed"'))),
   )
 })

@@ -1,5 +1,5 @@
 {
-  "name": "simpsonm09-personal",
+  "name": "simpsonm09-personal-ai-plugin",
   "version": "0.1.0",
   "description": "The personal Claude Code plugin for simpsonm09. Registers the skills for the local developer tools and the Agent Vault wrappers. It contributes no hooks.",
   "author": {
