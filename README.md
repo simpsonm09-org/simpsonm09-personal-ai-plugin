@@ -13,6 +13,7 @@ It contributes personal preferences and skills, not shared with the organization
 - `index.ts` and `package.json` are the OpenCode plugin entrypoint.
 - `skills/` holds the skills the plugin registers.
 - `.claude-plugin/` holds the Claude Code plugin manifest.
+- `.github/plugin/` holds the GitHub Copilot CLI plugin manifest. It names no hooks file.
 - `scripts/` holds the `discli` setup helpers and the layer contract validator.
 
 ## Servers
@@ -33,6 +34,10 @@ For OpenCode, the layer is configuration and a plugin at the same time. `maxstac
 Run `just setup-discli` once per machine to install `discli` and run `discli doctor`.
 
 To add a skill, create `skills/<id>/SKILL.md` with `name` and `description` frontmatter. The plugin picks it up on the next install and restart.
+
+## GitHub Copilot CLI plugin
+
+The same skills load into GitHub Copilot CLI from `.github/plugin/plugin.json`, with the same name and version as the Claude manifest and no hooks. Load the folder with `copilot --plugin-dir <folder>`, where the folder is this repository or its installed copy. Copilot finds the shared `skills/` directory at the plugin root.
 
 ## Claude Code plugin
 
