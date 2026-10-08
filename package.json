@@ -1,7 +1,7 @@
 {
   "name": "simpsonm09-personal-ai-plugin",
   "version": "0.1.0",
-  "description": "The personal OpenCode plugin for simpsonm09. Registers the skills for the local developer tools.",
+  "description": "The personal plugin for simpsonm09, for OpenCode and Claude Code. Registers the skills for the local developer tools.",
   "license": "MIT",
   "type": "module",
   "main": "index.ts",

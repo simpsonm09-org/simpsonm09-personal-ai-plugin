@@ -12,7 +12,8 @@ It contributes personal preferences and skills, not shared with the organization
 - `opencode.fragment.jsonc` is the fragment `maxstack` merges into the workspace config.
 - `index.ts` and `package.json` are the OpenCode plugin entrypoint.
 - `skills/` holds the skills the plugin registers.
-- `scripts/` holds the local setup helper for the `discli` Discord CLI.
+- `.claude-plugin/` holds the Claude Code plugin manifest.
+- `scripts/` holds the `discli` setup helpers and the layer contract validator.
 
 ## Servers
 
@@ -20,12 +21,12 @@ The layer contributes no MCP server. General services are reached through a CLI,
 
 ## Plugin and skills
 
-The layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/simpsonm09-personal-ai-plugin`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
+For OpenCode, the layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/simpsonm09-personal-ai-plugin`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
 
 | Skill | Purpose |
 | --- | --- |
 | `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), the loader and the Agent Vault wrappers, and the `himalaya`, `ntfy`, and `smsgate` services. |
-| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `dev-setup-starter` through `tools.yaml`. |
+| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `simpsonm09-dev-setup` through `tools.yaml`. |
 | `discord` | Discord through the `discli` CLI, including the `with-vault` and `with-secrets` wrappers, permission profiles, the audit log, and live `listen` and `serve` modes. |
 | `agent-vault` | The Agent Vault model, its identities, the `with-vault` and `with-secrets` wrappers, and the known gotchas. Discord and Postman go through it. |
 
@@ -35,7 +36,16 @@ To add a skill, create `skills/<id>/SKILL.md` with `name` and `description` fron
 
 ## Claude Code plugin
 
-The same skills also load into Claude Code as the `simpsonm09-personal-ai-plugin` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. Some skill text names OpenCode-only paths and tools, so read it as OpenCode guidance where it says so.
+The same skills also load into Claude Code as the `simpsonm09-personal-ai-plugin` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. The skill text is written for both harnesses. Where a tool name or path differs between them, the skill names both.
+
+## How it gets loaded
+
+This repository is not installed on its own. [`simpsonm09-maxstack`](https://github.com/simpsonm09-org/simpsonm09-maxstack)'s `scripts/Install-Workspace.ps1 -Apply` copies it to `<workspace>/.opencode/plugins/simpsonm09-personal-ai-plugin` and links `<workspace>/.claude/plugins/simpsonm09-personal-ai-plugin` to that copy.
+
+- OpenCode needs no setting. It finds the workspace `.opencode` folder by walking up from the repository.
+- Claude Code must be started with `--plugin-dir <workspace>/.claude/plugins`. In T3 Code that goes in the Claude provider instance's "Launch arguments".
+
+maxstack's [`docs/t3-setup.md`](https://github.com/simpsonm09-org/simpsonm09-maxstack/blob/main/docs/t3-setup.md) is the full reference. A new session is needed after each install.
 
 ## Layering
 

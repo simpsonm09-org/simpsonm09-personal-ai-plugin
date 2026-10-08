@@ -51,11 +51,11 @@ If a value is neither inferable nor present, say so. Do not invent it.
 | `postman` | `with-vault --role agent postman` for the agent, `with-secrets postman` or `with-vault --role human postman` for the human | The Postman API key is brokered, not exported. |
 | `himalaya`, `ntfy`, `smsgate` | `with-secrets <tool>` | These read the value from the environment. |
 
-The `agent-vault` skill owns the identities, the bundles, and the proxy.
+The `agent-vault` skill (`simpsonm09-personal-ai-plugin:agent-vault` in Claude Code) owns the identities, the bundles, and the proxy.
 
 ## How the loader reaches the value
 
-The human runs `with-secrets <tool>` in WSL or `with-secrets.ps1 <tool>` on Windows. Both read `settings/.env` for the Infisical machine identity and the offline fallback, pull the project's `/secrets` and `/pii` values, and overlay them, so an Infisical value overrides a same-name `.env` value. When Infisical is unreachable the `.env` values remain. WSL also loads the workspace `.envrc` through direnv for a shell session, and Windows runs `just import-secrets -Apply` in `dev-setup-starter` for the same effect. See `dev-setup-starter/docs/secrets.md`.
+The human runs `with-secrets <tool>` in WSL or `with-secrets.ps1 <tool>` on Windows. Both read `settings/.env` for the Infisical machine identity and the offline fallback, pull the project's `/secrets` and `/pii` values, and overlay them, so an Infisical value overrides a same-name `.env` value. When Infisical is unreachable the `.env` values remain. WSL also loads the workspace `.envrc` through direnv for a shell session, and Windows runs `just import-secrets -Apply` in `simpsonm09-dev-setup` for the same effect. See `simpsonm09-dev-setup/docs/secrets.md`.
 
 ## Personal services
 
@@ -93,14 +93,14 @@ Send real SMS through an Android phone. This is for texting other people, not fo
 
 ```bash
 smsgate -e "http://$SMS_GATEWAY_HOST:8080/message" -u "$SMS_GATEWAY_USER" -p "$SMS_GATEWAY_PASSWORD" \
-  send --phones '+15551234567' 'message'
+  send --phones '<recipient phone number>' 'message'
 ```
 
 Rules: SMS only, never set the phone's default SMS app, keep volume low, and do not use it for batch sending.
 
 ### Discord via `discli`
 
-Discord, including messages, channels, and DMs, is owned by `discli`. The bot token is `DISCORD_BOT_TOKEN` in Infisical `/secrets`, reached through `with-vault` or `with-secrets`. See the `discord` skill for the wrappers, profiles, and the command set.
+Discord, including messages, channels, and DMs, is owned by `discli`. The bot token is `DISCORD_BOT_TOKEN` in Infisical `/secrets`, reached through `with-vault` or `with-secrets`. See the `discord` skill (`simpsonm09-personal-ai-plugin:discord` in Claude Code) for the wrappers, profiles, and the command set.
 
 ## Channel selection
 
@@ -116,6 +116,6 @@ Discord, including messages, channels, and DMs, is owned by `discli`. The bot to
 - Keep a credential in Infisical `/secrets` and PII, person, or machine config in Infisical `/pii`.
 - Keep `settings/.env` to the Infisical machine identity and a small offline fallback. The loaders overlay Infisical on `.env`, and the `.env` copy remains the fallback when Infisical is unreachable.
 - Reach a value through a wrapper. The agent reaches Discord and Postman through `with-vault --role agent`; the human can use `with-secrets` or `with-vault --role human` for them, and `with-secrets` for the other services. Name the wrapper rather than a raw environment variable on the agent path.
-- Confirm a CLI exists before you cite it or one of its commands. Run `command -v <cli>` in WSL or `Get-Command <cli>` on Windows. Do not claim a job moved from MCP to a CLI the runtime does not have.
+- Confirm a CLI exists before you cite it or one of its commands. Run `command -v <cli>` in a Bash shell (WSL, or Git Bash on Windows) or `Get-Command <cli>` in PowerShell. Do not claim a job moved from MCP to a CLI the runtime does not have.
 - State how a service is reached only as it really is. Name the owner the runtime has, an MCP server or a CLI, and do not present one as the other.
 - The org registry states the general rule; this skill states the source.
