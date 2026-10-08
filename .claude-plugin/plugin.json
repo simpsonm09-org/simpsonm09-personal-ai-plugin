@@ -1,0 +1,9 @@
+{
+  "name": "simpsonm09-personal",
+  "version": "0.1.0",
+  "description": "The personal Claude Code plugin for simpsonm09. Registers the skills for the local developer tools and the Agent Vault wrappers. It contributes no hooks.",
+  "author": {
+    "name": "simpsonm09"
+  },
+  "license": "MIT"
+}

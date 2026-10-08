@@ -3,5 +3,5 @@
   "description": "Personal OpenCode layer for simpsonm09.",
   "kind": "config",
   "config": "opencode.fragment.jsonc",
-  "files": ["index.ts", "package.json", "skills", "README.md"]
+  "files": ["index.ts", "package.json", "skills", "README.md", ".claude-plugin"]
 }

@@ -33,6 +33,10 @@ Run `just setup-discli` once per machine to install `discli` and run `discli doc
 
 To add a skill, create `skills/<id>/SKILL.md` with `name` and `description` frontmatter. The plugin picks it up on the next install and restart.
 
+## Claude Code plugin
+
+The same skills also load into Claude Code as the `simpsonm09-personal` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. Some skill text names OpenCode-only paths and tools, so read it as OpenCode guidance where it says so.
+
 ## Layering
 
 Precedence is personal over org over the PStack base. A layer overrides a same-key server from a lower layer. `maxstack` records the repo and commit of every layer in `stack.lock.json`.
