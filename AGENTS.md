@@ -1,6 +1,6 @@
 # simpsonm09-personal-ai-plugin working agreements
 
-The personal OpenCode layer for `simpsonm09`.
+The personal plugin layer for `simpsonm09`. It serves OpenCode and Claude Code from one `skills/` folder.
 
 ## Ground rules
 

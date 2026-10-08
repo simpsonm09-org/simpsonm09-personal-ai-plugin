@@ -1,6 +1,6 @@
 {
   "name": "simpsonm09-personal-ai-plugin",
-  "description": "Personal OpenCode layer for simpsonm09.",
+  "description": "Personal plugin layer for simpsonm09, for OpenCode and Claude Code.",
   "kind": "config",
   "config": "opencode.fragment.jsonc",
   "files": ["index.ts", "package.json", "skills", "README.md", ".claude-plugin"]
