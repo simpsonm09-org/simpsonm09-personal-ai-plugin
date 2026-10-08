@@ -1,0 +1,9 @@
+{
+  "name": "simpsonm09-personal-ai-plugin",
+  "version": "0.1.0",
+  "description": "The personal GitHub Copilot CLI plugin for simpsonm09. Registers the skills for the local developer tools and the Agent Vault wrappers. It contributes no hooks.",
+  "author": {
+    "name": "simpsonm09"
+  },
+  "license": "MIT"
+}

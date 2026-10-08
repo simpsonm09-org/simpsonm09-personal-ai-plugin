@@ -13,7 +13,8 @@
     "package.json",
     "skills",
     "README.md",
-    ".claude-plugin"
+    ".claude-plugin",
+    ".github/plugin"
   ],
   "scripts": {
     "test": "node --test"
