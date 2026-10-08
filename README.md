@@ -1,8 +1,8 @@
-# simpsonm09-personal-opencode
+# simpsonm09-personal-ai-plugin
 
-The personal OpenCode layer for `simpsonm09`.
+The personal plugin layer for `simpsonm09`. It serves OpenCode and Claude Code from one `skills/` folder.
 
-The original lives in `simpsonm09-org/simpsonm09-personal-opencode-plugin`; work happens on the personal fork. See [`repo-standard`](https://github.com/simpsonm09-org/simpsonm09-repo-standard).
+The original lives in `simpsonm09-org/simpsonm09-personal-ai-plugin`; work happens on the personal fork. See [`repo-standard`](https://github.com/simpsonm09-org/simpsonm09-repo-standard).
 
 It contributes personal preferences and skills, not shared with the organization. It contributes no MCP server; every personal service is reached through a CLI. `maxstack` composes this layer last, so it overrides the org layer on a same-key conflict.
 
