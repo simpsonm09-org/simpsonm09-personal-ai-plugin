@@ -26,7 +26,7 @@ For OpenCode, the layer is configuration and a plugin at the same time. `maxstac
 
 | Skill | Purpose |
 | --- | --- |
-| `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), the loader and the Agent Vault wrappers, and the `himalaya`, `ntfy`, and `smsgate` services. |
+| `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), the `with-secrets` and Agent Vault wrappers, and the `himalaya`, `ntfy`, and `smsgate` services. |
 | `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `simpsonm09-dev-setup` through `tools.yaml`. |
 | `discord` | Discord through the `discli` CLI, including the `with-vault` and `with-secrets` wrappers, permission profiles, the audit log, and live `listen` and `serve` modes. |
 | `agent-vault` | The Agent Vault model, its identities, the `with-vault` and `with-secrets` wrappers, and the known gotchas. Discord and Postman go through it. |
@@ -56,7 +56,7 @@ maxstack's [`docs/t3-setup.md`](https://github.com/simpsonm09-org/simpsonm09-max
 
 Precedence is personal over org over the PStack base. A layer overrides a same-key server from a lower layer. `maxstack` records the repo and commit of every layer in `stack.lock.json`.
 
-Values follow the four-tier store model. A committed file names a variable but never a value. The gitignored `settings/.env` holds the Infisical machine identity (secret-zero) and a small offline fallback. Infisical `/secrets` holds credentials, and Infisical `/pii` holds PII and person or machine config. The loaders overlay Infisical on `.env` and keep the documented offline fallback.
+Values follow the four-tier store model. A committed file names a variable but never a value. The gitignored `settings/.env` holds the Infisical machine identity (secret-zero) and a small offline fallback. Infisical `/secrets` holds credentials, and Infisical `/pii` holds PII and person or machine config. Online `with-secrets` reads only the store; the `.env` fallback is used only with `--offline`.
 
 ## Layer contract
 

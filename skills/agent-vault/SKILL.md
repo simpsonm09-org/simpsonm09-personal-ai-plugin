@@ -32,7 +32,7 @@ Three identities keep access and attribution separate. The loader identity reads
 
 | Command | Who | Identity | Secret path |
 | --- | --- | --- | --- |
-| `with-secrets <tool> [args]` | Human | `Ugallu-Desktop` | Loaded into that command's environment |
+| `with-secrets [--require NAMES] <tool> [args]` | Human | `Ugallu-Desktop` | Loaded into that command's environment |
 | `with-vault --role human <tool> [args]` | Human | `Human-Vault-Runner` | Attached by the proxy |
 | `with-vault --role agent <tool> [args]` | Agent | `Agent-Vault-Runner` | Attached by the proxy |
 
@@ -49,7 +49,7 @@ The Windows wrappers are `with-secrets.ps1` and `with-vault.ps1` in `%USERPROFIL
 ```bash
 with-vault --role agent discli --json server list
 with-vault --role human postman collection list
-with-secrets ntfy publish "$NTFY_TOPIC" "done"
+with-secrets --require NTFY_TOPIC,NTFY_TOKEN sh -c 'ntfy publish "$NTFY_TOPIC" "done"'
 ```
 
 ## Gotchas
