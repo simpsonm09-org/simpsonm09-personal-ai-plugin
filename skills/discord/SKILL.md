@@ -32,7 +32,7 @@ Run every `discli` command through a wrapper.
 | Who runs it | Command | Identity |
 | --- | --- | --- |
 | Agent | `with-vault --role agent discli <args>` | `Agent-Vault-Runner` |
-| Human | `with-secrets discli <args>` | `Ugallu-Desktop` |
+| Human | `with-secrets --require DISCORD_BOT_TOKEN discli <args>` | `Ugallu-Desktop` |
 | Human | `with-vault --role human discli <args>` | `Human-Vault-Runner` |
 
 The agent path never reads `DISCORD_BOT_TOKEN`. `with-vault` opens a per-run session and the proxy attaches the token, so the token never enters the agent's environment or its `~/.discli/config.json`. A raw `discli` with no wrapper fails with no token, which is the intended state.
@@ -44,11 +44,11 @@ The agent path never reads `DISCORD_BOT_TOKEN`. `with-vault` opens a per-run ses
 3. The `~/.discli/config.json` file
 4. The `DISCORD_TOKEN` environment variable
 
-That order is superseded for the agent path. The agent does not set `DISCORD_BOT_TOKEN`, does not run `discli config set token`, and does not pass `--token`. The wrapper is the only route. The human may still use the loader, which puts `DISCORD_BOT_TOKEN` in the environment of that one command.
+That order is superseded for the agent path. The agent does not set `DISCORD_BOT_TOKEN`, does not run `discli config set token`, and does not pass `--token`. The wrapper is the only route. The human may still use `with-secrets --require DISCORD_BOT_TOKEN`, which puts `DISCORD_BOT_TOKEN` in the environment of that one command.
 
 ```bash
 with-vault --role agent discli --json server list
-with-secrets discli --json server list
+with-secrets --require DISCORD_BOT_TOKEN discli --json server list
 ```
 
 The `agent-vault` skill (`simpsonm09-personal-ai-plugin:agent-vault` in Claude Code) owns the identities, the bundles, and the proxy.
@@ -123,7 +123,7 @@ discli serve --status online
 ## Rules
 
 - Prefer `discli` over any second path to Discord. There is no Discord MCP server in this workspace.
-- Run `discli` through a wrapper. The agent runs `with-vault --role agent discli` and never reads the token. The human runs `with-secrets discli` or `with-vault --role human discli`.
+- Run `discli` through a wrapper. The agent runs `with-vault --role agent discli` and never reads the token. The human runs `with-secrets --require DISCORD_BOT_TOKEN discli` or `with-vault --role human discli`.
 - An agent never drives `discli setup` and never runs `discli config set token`. Use the wrapper and the individual commands.
 - Use `--profile readonly` or `--profile chat` unless the task needs a destructive action.
 - Run `discli doctor` before blaming a command.
