@@ -14,7 +14,8 @@
     "skills",
     "README.md",
     ".claude-plugin",
-    ".github/plugin"
+    ".github/plugin",
+    "workspace-instructions.md"
   ],
   "scripts": {
     "test": "node --test"

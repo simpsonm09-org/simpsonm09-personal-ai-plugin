@@ -10,9 +10,10 @@ const LAYER = {
   name: "simpsonm09-personal-ai-plugin",
   kind: "config",
   config: "opencode.fragment.jsonc",
-  files: ["index.ts", "package.json", "skills", "README.md"],
+  workspaceInstructions: "workspace-instructions.md",
+  files: ["index.ts", "package.json", "skills", "README.md", "workspace-instructions.md"],
 }
-const PKG = { name: "simpsonm09-personal-ai-plugin", files: ["index.ts", "package.json", "skills", "README.md"] }
+const PKG = { name: "simpsonm09-personal-ai-plugin", files: ["index.ts", "package.json", "skills", "README.md", "workspace-instructions.md"] }
 const INDEX = 'export default Plugin.define({ id: "simpsonm09-personal-ai-plugin", async setup() {} })'
 const SKILL = '---\nname: demo\ndescription: Use when running the demo.\n---\n\n# Demo\n'
 
@@ -23,6 +24,7 @@ function makeFixture() {
   writeFileSync(join(root, "package.json"), JSON.stringify(PKG))
   writeFileSync(join(root, "index.ts"), INDEX)
   writeFileSync(join(root, "README.md"), "# demo\n")
+  writeFileSync(join(root, "workspace-instructions.md"), "# demo\n- Follow the demo rules.\n")
   writeFileSync(join(root, "opencode.fragment.jsonc"), "{}\n")
   writeFileSync(join(root, "skills", "demo", "SKILL.md"), SKILL)
   return root

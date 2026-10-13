@@ -3,12 +3,14 @@
   "description": "Personal plugin layer for simpsonm09, for OpenCode and Claude Code.",
   "kind": "config",
   "config": "opencode.fragment.jsonc",
+  "workspaceInstructions": "workspace-instructions.md",
   "files": [
     "index.ts",
     "package.json",
     "skills",
     "README.md",
     ".claude-plugin",
-    ".github/plugin"
+    ".github/plugin",
+    "workspace-instructions.md"
   ]
 }
