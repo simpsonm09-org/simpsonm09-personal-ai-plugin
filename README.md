@@ -15,6 +15,7 @@ It contributes personal preferences and skills, not shared with the organization
 - `.claude-plugin/` holds the Claude Code plugin manifest.
 - `.github/plugin/` holds the GitHub Copilot CLI plugin manifest. It names no hooks file.
 - `scripts/` holds the `discli` setup helpers and the layer contract validator.
+- `workspace-instructions.md` contains the layer's always-on working agreements. Every session pays for this text, so detailed procedures belong in skills.
 
 ## Servers
 
