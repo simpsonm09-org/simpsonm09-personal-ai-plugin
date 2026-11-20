@@ -31,7 +31,7 @@ For OpenCode, the layer is configuration and a plugin at the same time. `maxstac
 | Skill | Purpose |
 | --- | --- |
 | `integrations-personal` | Where each personal value comes from (infer from the tool, Infisical `/secrets`, or Infisical `/pii`), the `with-secrets` and Agent Vault wrappers, and the `himalaya`, `ntfy`, and `smsgate` services. |
-| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `simpsonm09-dev-setup` through `tools.yaml`. |
+| `dev-tools` | Where each personal tool's settings live and how to apply them. Installing the tools is owned by `dev-setup` through `tools.yaml`. |
 | `discord` | Discord through the `discli` CLI, including the `with-vault` and `with-secrets` wrappers, permission profiles, the audit log, and live `listen` and `serve` modes. |
 | `agent-vault` | The Agent Vault model, its identities, the `with-vault` and `with-secrets` wrappers, and the known gotchas. Discord and Postman go through it. |
 
