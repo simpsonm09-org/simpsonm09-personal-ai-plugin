@@ -5,7 +5,7 @@ description: Use when configuring or troubleshooting the personal developer tool
 
 # Personal dev tools
 
-Two concerns stay separate. `simpsonm09-dev-setup` owns installing the tools. Its `tools.yaml` is the single hand-edited list, and its scripts render and apply the machine tool set. This skill owns where each tool keeps its settings and how to apply a change.
+Two concerns stay separate. `dev-setup` owns installing the tools. Its `tools.yaml` is the single hand-edited list, and its scripts render and apply the machine tool set. This skill owns where each tool keeps its settings and how to apply a change.
 
 | Tool | Role | Settings and apply |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ Two concerns stay separate. `simpsonm09-dev-setup` owns installing the tools. It
 
 ## Notes
 
-- The paths above are inside the `simpsonm09-dev-setup` repository.
+- The paths above are inside the `dev-setup` repository.
 - After a plugin, skill, or MCP change, use "Restart agent session" in T3 Code.
-- Secrets do not load into a shell. Run a command that needs them as `with-secrets --require <names> <command>`, naming the keys it needs. Remove a workspace `.envrc` that imports secrets; `with-secrets` warns when one is present. See `simpsonm09-dev-setup/docs/secrets.md`.
+- Secrets do not load into a shell. Run a command that needs them as `with-secrets --require <names> <command>`, naming the keys it needs. Remove a workspace `.envrc` that imports secrets; `with-secrets` warns when one is present. See `dev-setup/docs/secrets.md`.
 - Run heavy Linux I/O in ext4 under the WSL home. Do not put `node_modules` or a build tree on the `D:` mount.

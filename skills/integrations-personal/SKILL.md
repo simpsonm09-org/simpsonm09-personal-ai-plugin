@@ -57,7 +57,7 @@ The `agent-vault` skill (`simpsonm09-personal-ai-plugin:agent-vault` in Claude C
 
 ## How `with-secrets` reaches the value
 
-The human runs `with-secrets [--offline] [--require <names>] <tool>` in WSL or `with-secrets.ps1` on Windows. Online is the default. The wrapper reads `settings/.env` for the Infisical machine identity, exports the project's `/secrets` and `/pii`, and fails without starting the tool if the store, either export, or a required name is unavailable. `--offline` uses only the `.env` fallback. Run `just secrets-init` once to create `settings/.env`. The old `.envrc` loader and `just import-secrets` are retired; a leftover `.envrc` import gets a warning. See `simpsonm09-dev-setup/docs/secrets.md`.
+The human runs `with-secrets [--offline] [--require <names>] <tool>` in WSL or `with-secrets.ps1` on Windows. Online is the default. The wrapper reads `settings/.env` for the Infisical machine identity, exports the project's `/secrets` and `/pii`, and fails without starting the tool if the store, either export, or a required name is unavailable. `--offline` uses only the `.env` fallback. Run `just secrets-init` once to create `settings/.env`. The old `.envrc` loader and `just import-secrets` are retired; a leftover `.envrc` import gets a warning. See `dev-setup/docs/secrets.md`.
 
 ## Personal services
 
