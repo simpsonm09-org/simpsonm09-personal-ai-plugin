@@ -4,7 +4,7 @@ The personal plugin layer for `simpsonm09`. It serves OpenCode and Claude Code f
 
 This repository lives in `simpsonm09-projects/personal-ai-plugin`. Work happens on a branch
 with a pull request into `main`.
-See [`repo-standard`](https://github.com/simpsonm09-projects/simpsonm09-repo-standard)
+See [`repo-standard`](https://github.com/simpsonm09-projects/repo-standard)
 for the branch model and the protection rules.
 
 It contributes personal preferences and skills, not shared with the organization. It contributes no MCP server; every personal service is reached through a CLI. `maxstack` composes this layer last, so it overrides the org layer on a same-key conflict.
