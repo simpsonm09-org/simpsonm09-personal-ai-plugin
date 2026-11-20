@@ -49,12 +49,12 @@ The same skills also load into Claude Code as the `personal-ai-plugin` plugin. `
 
 ## How it gets loaded
 
-This repository is not installed on its own. [`simpsonm09-maxstack`](https://github.com/simpsonm09-projects/simpsonm09-maxstack)'s `scripts/Install-Workspace.ps1 -Apply` copies it to `<workspace>/.opencode/plugins/personal-ai-plugin` and links `<workspace>/.claude/plugins/personal-ai-plugin` to that copy.
+This repository is not installed on its own. [`maxstack`](https://github.com/simpsonm09-projects/maxstack)'s `scripts/Install-Workspace.ps1 -Apply` copies it to `<workspace>/.opencode/plugins/personal-ai-plugin` and links `<workspace>/.claude/plugins/personal-ai-plugin` to that copy.
 
 - OpenCode needs no setting. It finds the workspace `.opencode` folder by walking up from the repository.
 - Claude Code must be started with `--plugin-dir <workspace>/.claude/plugins`. In T3 Code that goes in the Claude provider instance's "Launch arguments".
 
-maxstack's [`docs/t3-setup.md`](https://github.com/simpsonm09-projects/simpsonm09-maxstack/blob/main/docs/t3-setup.md) is the full reference. A new session is needed after each install.
+maxstack's [`docs/t3-setup.md`](https://github.com/simpsonm09-projects/maxstack/blob/main/docs/t3-setup.md) is the full reference. A new session is needed after each install.
 
 ## Layering
 
