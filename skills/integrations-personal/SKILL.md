@@ -53,7 +53,7 @@ If a value is neither inferable nor present, say so. Do not invent it.
 | `ntfy` | `with-secrets --require NTFY_TOPIC,NTFY_TOKEN ntfy` for the human. No agent form is defined here. | It reads the topic and token from the environment. |
 | `smsgate` | `with-secrets --require SMS_GATEWAY_HOST,SMS_GATEWAY_USER,SMS_GATEWAY_PASSWORD smsgate` for the human. No agent form is defined here. | It reads the gateway host and credentials from the environment. |
 
-The `agent-vault` skill (`simpsonm09-personal-ai-plugin:agent-vault` in Claude Code) owns the identities, the bundles, and the proxy.
+The `agent-vault` skill (`personal-ai-plugin:agent-vault` in Claude Code) owns the identities, the bundles, and the proxy.
 
 ## How `with-secrets` reaches the value
 
@@ -104,7 +104,7 @@ Rules: SMS only, never set the phone's default SMS app, keep volume low, and do 
 
 ### Discord via `discli`
 
-Discord, including messages, channels, and DMs, is owned by `discli`. The bot token is `DISCORD_BOT_TOKEN` in Infisical `/secrets`, reached through `with-vault` or `with-secrets`. See the `discord` skill (`simpsonm09-personal-ai-plugin:discord` in Claude Code) for the wrappers, profiles, and the command set.
+Discord, including messages, channels, and DMs, is owned by `discli`. The bot token is `DISCORD_BOT_TOKEN` in Infisical `/secrets`, reached through `with-vault` or `with-secrets`. See the `discord` skill (`personal-ai-plugin:discord` in Claude Code) for the wrappers, profiles, and the command set.
 
 ## Channel selection
 

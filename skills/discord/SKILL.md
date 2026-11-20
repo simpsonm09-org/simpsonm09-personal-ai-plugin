@@ -51,7 +51,7 @@ with-vault --role agent discli --json server list
 with-secrets --require DISCORD_BOT_TOKEN discli --json server list
 ```
 
-The `agent-vault` skill (`simpsonm09-personal-ai-plugin:agent-vault` in Claude Code) owns the identities, the bundles, and the proxy.
+The `agent-vault` skill (`personal-ai-plugin:agent-vault` in Claude Code) owns the identities, the bundles, and the proxy.
 
 ## Never drive the wizard
 
