@@ -1,8 +1,8 @@
-# simpsonm09-personal-ai-plugin
+# personal-ai-plugin
 
 The personal plugin layer for `simpsonm09`. It serves OpenCode and Claude Code from one `skills/` folder.
 
-This repository lives in `simpsonm09-projects/simpsonm09-personal-ai-plugin`. Work happens on a branch
+This repository lives in `simpsonm09-projects/personal-ai-plugin`. Work happens on a branch
 with a pull request into `main`.
 See [`repo-standard`](https://github.com/simpsonm09-projects/simpsonm09-repo-standard)
 for the branch model and the protection rules.
@@ -26,7 +26,7 @@ The layer contributes no MCP server. General services are reached through a CLI,
 
 ## Plugin and skills
 
-For OpenCode, the layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/simpsonm09-personal-ai-plugin`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
+For OpenCode, the layer is configuration and a plugin at the same time. `maxstack`'s `Install-Workspace.ps1` merges the fragment into `opencode.jsonc` and copies the files named in `layer.json` into `.opencode/plugins/personal-ai-plugin`, where OpenCode loads the plugin. The plugin registers every `skills/<id>/SKILL.md` through `ctx.skill.transform`.
 
 | Skill | Purpose |
 | --- | --- |
@@ -45,11 +45,11 @@ The same skills load into GitHub Copilot CLI from `.github/plugin/plugin.json`, 
 
 ## Claude Code plugin
 
-The same skills also load into Claude Code as the `simpsonm09-personal-ai-plugin` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. The skill text is written for both harnesses. Where a tool name or path differs between them, the skill names both.
+The same skills also load into Claude Code as the `personal-ai-plugin` plugin. `.claude-plugin/plugin.json` is the manifest, and Claude Code finds the shared `skills/` directory at the plugin root, so nothing is copied. The plugin contributes no hooks: the access gate is in the org plugin, and these skills are reference material. The skill text is written for both harnesses. Where a tool name or path differs between them, the skill names both.
 
 ## How it gets loaded
 
-This repository is not installed on its own. [`simpsonm09-maxstack`](https://github.com/simpsonm09-projects/simpsonm09-maxstack)'s `scripts/Install-Workspace.ps1 -Apply` copies it to `<workspace>/.opencode/plugins/simpsonm09-personal-ai-plugin` and links `<workspace>/.claude/plugins/simpsonm09-personal-ai-plugin` to that copy.
+This repository is not installed on its own. [`simpsonm09-maxstack`](https://github.com/simpsonm09-projects/simpsonm09-maxstack)'s `scripts/Install-Workspace.ps1 -Apply` copies it to `<workspace>/.opencode/plugins/personal-ai-plugin` and links `<workspace>/.claude/plugins/personal-ai-plugin` to that copy.
 
 - OpenCode needs no setting. It finds the workspace `.opencode` folder by walking up from the repository.
 - Claude Code must be started with `--plugin-dir <workspace>/.claude/plugins`. In T3 Code that goes in the Claude provider instance's "Launch arguments".
@@ -68,7 +68,7 @@ Values follow the four-tier store model. A committed file names a variable but n
 
 | Part | Contract |
 | --- | --- |
-| `layer.json` | Names the config fragment and the files copied into `.opencode/plugins/simpsonm09-personal-ai-plugin`. |
+| `layer.json` | Names the config fragment and the files copied into `.opencode/plugins/personal-ai-plugin`. |
 | `package.json` | Its `files` array lists the same files as `layer.json`, and its `name` matches the plugin id in `index.ts`. |
 | `opencode.fragment.jsonc` | Parses as JSONC and contributes no MCP server. A non-empty `mcp.servers` map fails the validator. |
 | `skills/<id>/SKILL.md` | Carries `name` equal to the directory id and a non-empty `description`. The plugin registers the body. |
